@@ -1,6 +1,7 @@
 const express = require('express')
 // import sequelize connection
-
+require('./config/connection.js')
+.sync()
 const app = express()
 
 app.use(express.json())
