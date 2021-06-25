@@ -13,7 +13,7 @@ router.get('/categories', (req, res) => {
     }
   })
   .then(categories => res.json(categories))
-  .catch(err)
+    .catch(err => res.json(err))
 })
 
 router.get('/categories/:id', (req, res) => {
@@ -31,23 +31,23 @@ router.post('/categories', (req, res) => {
   // create a new category
   Category.create({category_name: req.body.category_name})
   .then(category => res.json(category))
-  .catch(err)
+    .catch(err => res.json(err))
 })
 
 router.put('/categories/:id', (req, res) => {
   // update a category by its `id` value
-  Category.update({category_name: req.body.category_name}{
-    where: {id: req.params.id}
+  Category.update({category_name: req.body.category_name},
+    { where: {id: req.params.id}
   })
   .then(category => res.json(category))
-  .catch(err => console.log('no category by that name'))
+    .catch(err => res.json(err))
 })
 
 router.delete('/categories/:id', (req, res) => {
   // delete a category by its `id` value
   Category.destroy({ where: {id:req.params.id}})
   .then(category => res.json(category))
-  .catch(err => console.log(err))
+    .catch(err => res.json(err))
 })
 
 module.exports = router
